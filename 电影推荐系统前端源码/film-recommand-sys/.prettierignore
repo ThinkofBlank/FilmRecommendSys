@@ -1,0 +1,5 @@
+# 忽略格式化问问文件
+node_modules,
+dist
+.vscode
+.gitee

@@ -1,0 +1,23 @@
+spring:
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name:
+      url: jdbc:mysql://127.0.0.1:3306/film?characterEncoding=utf8&serverTimezone=GMT%2B8
+      username: root
+      password: root
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+logging:
+  level:
+    edu.hnnu.film: debug
+    org.springframework: info
+
+server:
+  port: 10010

@@ -1,0 +1,49 @@
+@use 'var';
+
+$package-name: film-recommend-sys;
+
+$theme-color: #e95c5c;
+$bg-color: #fff;
+$main-color: #333;
+$second-color: #666;
+$large-size: 18px;
+$main-size: 14px;
+
+$N: () !default;
+$B: () !default;
+$E: () !default;
+$M: () !default;
+
+@mixin wrap($namespace) {
+    $N: #{$package-name}-#{$namespace} !global;
+
+    .#{$N} {
+        @content;
+    }
+}
+
+@mixin b($block) {
+    $B: #{$N}-#{$block} !global;
+
+    @at-root {
+        .#{$B} {
+            @content;
+        }
+    }
+}
+
+@mixin e($element) {
+    $E: #{$N}_#{$element} !global;
+
+    @at-root .#{$E} {
+        @content;
+    }
+}
+
+@mixin m($modify) {
+    $M: #{$N}--#{$modify} !global;
+
+    @at-root .#{$M} {
+        @content;
+    }
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AppraiseMapper">
+
+    <select id="listPage" resultType="com.example.demo.pojo.dto.AppraiseDTO">
+        select a.*,fd.enabled,su.nickname,fd.score as filmScore,fd.image_url,fd.title,fd.directors,fd.types,fd.playwright,
+               (select count(1) from thumb t where t.film_id = a.film_id group by t.film_id) as thumbCount from appraise a
+            left join sys_user su on a.user_id = su.id
+            left join film_detail fd on a.film_id = fd.id
+        <where>
+            1=1
+            <if test="params.filmId != null and params.filmId != ''">
+                and a.film_id = #{params.filmId}
+            </if>
+            <if test="params.userId != null and params.userId != ''">
+                and a.user_id = #{params.userId}
+            </if>
+        </where>
+    </select>
+
+</mapper>
